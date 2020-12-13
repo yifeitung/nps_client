@@ -59,7 +59,7 @@ class NPS():
         response = requests.get(url, params=query)
         status_code = response.status_code
         if status_code != 200:
-            raise Exception("Something went wrong")
+            raise Exception("Something went wrong.")
         else:
             return response.json()
 
@@ -112,59 +112,7 @@ class NPS():
         response = requests.get(url, params=query)
         status_code = response.status_code
         if status_code != 200:
-            raise Exception("Something went wrong")
-        else:
-            return response.json()
-
-    def get_park_alerts(self, parkcode=None, statecode=None,
-                        start=None, q=""):
-        """
-        Retrieve alerts (danger, closure, caution, and infromation) posted by
-        parks.
-
-        Parameters
-        ----------
-        parkcode: str
-            A comma delimited list of 4 character park codes.
-        statecode: str
-            A comma delimited list of 2 character state codes.
-        start: int
-            Get the next 100 results starting with this number. Deafult is 0.
-        q: str
-            Term to search on
-
-        Returns
-        -------
-        dict
-        """
-        payload = {}
-        url = self.base_url + "/alerts"
-        if start is None:
-            payload['start'] = 0
-        if not (start is None):
-            try:
-                if isinstance(start, (str, float)):
-                    raise TypeError
-                if start < 0:
-                    raise ValueError
-            except (TypeError, ValueError):
-                print('Please check your input values for start.')
-                return None
-            else:
-                payload['start'] = start
-        if not (parkcode is None):
-            payload.update({'parkCode': parkcode})
-        if not (statecode is None):
-            payload.update({'stateCode': statecode})
-        if q == "":
-            pass
-        else:
-            payload.update({'q': q})
-        query = self.get_query_params(payload=payload)
-        response = requests.get(url, params=query)
-        status_code = response.status_code
-        if status_code != 200:
-            raise Exception("Something went wrong")
+            raise Exception("Something went wrong.")
         else:
             return response.json()
 
@@ -259,7 +207,7 @@ class NPS():
         response = requests.get(url, params=query)
         status_code = response.status_code
         if status_code != 200:
-            raise Exception("Something went wrong")
+            raise Exception("Something went wrong.")
         else:
             return response.json()
 
@@ -309,7 +257,7 @@ class NPS():
         response = requests.get(url, params=query)
         status_code = response.status_code
         if status_code != 200:
-            raise Exception("Something went wrong")
+            raise Exception("Something went wrong.")
         else:
             return response.json()
 
@@ -413,8 +361,8 @@ class NPS():
         else:
             return response.json()
 
-    def get_amentities_places_within_parks(self, parkcode=None,
-                                           id="", q="", start=None):
+    def get_amenities_places_within_parks(self, parkcode=None,
+                                          id="", q="", start=None):
         """
         Retrieve "places" within national parks that have different amenities.
 
